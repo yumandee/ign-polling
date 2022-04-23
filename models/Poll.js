@@ -10,9 +10,22 @@ const PollSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, 'Please provide a description!'],
-    maxlength: [200, 'Please keep your desciprtion to 200 characters!']
-
+    maxlength: [200, 'Please keep your description to 200 characters!']
+  },
+  options: {
+    type: [{}],
+    required: [true, 'A poll is not a poll without choices!']
+  },
+  password: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+  },
+  expires: {
+    type: Date,
   }
+
 })
 
-module.exports = mongoose.models.Poll || mongoose.model('Note', PollSchema)
+module.exports = mongoose.models.Poll || mongoose.model('Poll', PollSchema)
