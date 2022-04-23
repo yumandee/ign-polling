@@ -52,7 +52,13 @@ const NewPollForm = () => {
   const handleShow = () => setShow(!show);
 
   return (
-    <Flex bg="gray.100" align="center" justify="center" h="100vh">
+    <Flex
+      bg="gray.100"
+      align="center"
+      justify="center"
+      h="100vh"
+      overflow="scroll"
+    >
       <Box bg="white" p={6} rounded="md">
         <Formik
           initialValues={{
@@ -118,39 +124,32 @@ const NewPollForm = () => {
                     name="options"
                     render={(arrayHelpers) => (
                       <div>
-                        {values.options && values.options.length > 0 ? (
-                          values.options.map((option, index) => (
-                            <div key={index}>
-                              <Field as={InputGroup} size="md">
-                                <Input
-                                  marginBottom="0.5rem"
-                                  id={`options.${index}.description`}
-                                  name={`options.${index}.description`}
-                                  placeholder={`Option ${index+1}`}
-                                  variant="filled"
-                                />
-                                <InputRightElement>
-
-                                <IconButton
-                                  name="icon-button"
-                                  onClick={() => arrayHelpers.remove(index)}
-                                  variant="ghost"
-                                  aria-label="remove-option"
-                                  icon={FiX}
-                                />
-                                </InputRightElement>
-                              </Field>
-                              {/* <Button
-                                onClick={() => arrayHelpers.insert(index, "")}
-                              >
-                                Add an option
-                              </Button> */}
-                            </div>
-                          ))
-                        ) :  null
-                        }
+                        {values.options && values.options.length > 0
+                          ? values.options.map((option, index) => (
+                              <div key={index}>
+                                <Field as={InputGroup} size="md">
+                                  <Input
+                                    marginBottom="0.5rem"
+                                    id={`options.${index}.description`}
+                                    name={`options.${index}.description`}
+                                    placeholder={`Option ${index + 1}`}
+                                    variant="filled"
+                                  />
+                                  <InputRightElement width="3rem">
+                                    <IconButton
+                                      icon={FiX}
+                                      name="icon-button"
+                                      onClick={() => arrayHelpers.remove(index)}
+                                      variant="ghost"
+                                      aria-label="remove-option"
+                                    />
+                                  </InputRightElement>
+                                </Field>
+                              </div>
+                            ))
+                          : null}
                         <Button onClick={() => arrayHelpers.push("")}>
-                            Add an option
+                          Add an option
                         </Button>
                       </div>
                     )}
