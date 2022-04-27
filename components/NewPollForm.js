@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
@@ -11,11 +10,10 @@ import {
   Input,
   VStack,
   Textarea,
-  Select,
   FormHelperText,
   InputGroup,
   InputRightElement,
-  IconButton
+  IconButton, useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -34,6 +32,8 @@ const PollSchema = Yup.object().shape({
         description: Yup.string().trim()
       })
     )
+    .required('Your poll needs options to be a poll!'),
+  optionstext: Yup.string()
     .required('Your poll needs options to be a poll!'),
   password: Yup.string().trim(),
   createdAt: Yup.date(),
@@ -65,16 +65,32 @@ const NewPollForm = () => {
             title: "",
             description: "",
             options: [],
+            optionstext: "",
             password: undefined,
             createdAt: new Date(),
             expires: createExpiration(30),
           }}
           onSubmit={(values) => {
             // same shape as initial values
-            for (let i = 0; i < values.options.length; i++) {
-              values.options[i].votes = 0;
+            let obj;
+
+            let ops = values.optionstext.split(',')
+            console.log(ops)
+            values.options = [] //clear first
+            for (let i = 0; i < ops.length; i++) {
+              let desc = ops[i].trim()
+              obj = {
+                description: desc,
+                votes: 0,
+              }
+              
+              if (!(values.options.some(e => e.description.toLowerCase() === desc.toLowerCase()))) {
+                values.options.push(obj);
+              }
+        
             }
-            console.log(values);
+            // CREATE POLL
+            // TOAST
           }}
           validationSchema={PollSchema}
         >
@@ -104,7 +120,7 @@ const NewPollForm = () => {
                 >
                   <FormLabel htmlFor="description">Description</FormLabel>
                   <Field
-                    as={Textarea}
+                    as={Input}
                     id="description"
                     name="description"
                     type="text"
@@ -116,15 +132,15 @@ const NewPollForm = () => {
 
                 <FormControl
                   isRequired
-                  isInvalid={!!errors.options && touched.options}
+                  isInvalid={!!errors.optionstext && touched.optionstext}
                 >
                   <FormLabel htmlFor="options">Poll Options</FormLabel>
 
-                  <FieldArray
+                  {/* <FieldArray
                     name="options"
                     render={(arrayHelpers) => (
                       <div>
-                        {values.options && values.options.length > 0
+                        {values.optionstext && values.optionstext.length > 0
                           ? values.options.map((option, index) => (
                               <div key={index}>
                                 <Field as={InputGroup} size="md">
@@ -153,7 +169,19 @@ const NewPollForm = () => {
                         </Button>
                       </div>
                     )}
+                  /> */}
+                  <Field
+                    as={Textarea}
+                    id="optionstext"
+                    name="optionstext"
+                    type="text"
+                    variant="filled"
+                    maxLength="200"
                   />
+                  <FormErrorMessage>{errors.optionstext}</FormErrorMessage>
+                  <FormHelperText>
+                    Enter the options for your poll separated by commas. Any duplicates are ignored. 
+                  </FormHelperText>
                 </FormControl>
 
                 {/* PASSWORD */}
