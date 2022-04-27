@@ -1,0 +1,11 @@
+h1 {
+  text-align: center;
+}
+.wrapper { 
+  max-width: 1200px;
+  padding: 0 16px;
+}
+.navbar {
+  padding: 20px;
+  margin-bottom: 20px;
+}

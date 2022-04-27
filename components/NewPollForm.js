@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 
 import { FiEye, FiEyeOff, FiX } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 const PollSchema = Yup.object().shape({
   title: Yup.string().trim()
@@ -50,16 +51,41 @@ const createExpiration = (days) => {
 const NewPollForm = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
+  const router = useRouter();
+  const toast = useToast();
 
+  const createPoll = async (values) => {
+    try {
+      const res = await fetch('http://localhost:3000/api/polls', {
+        method: 'POST', 
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+      const {data} = await res.json()
+
+      router.push(`/polls/${data._id}`);
+      toast({
+        title: 'Poll successfully created!', 
+        status: 'success',
+        duration: 3000, 
+        isClosable: true,
+        position: 'top',
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Flex
-      bg="gray.100"
       align="center"
       justify="center"
-      h="100vh"
+      // h="100%"
       overflow="scroll"
     >
-      <Box bg="white" p={6} rounded="md">
+      <Box margin={4} borderWidth={1} borderRadius="lg" overflow="hidden" bg="white" p={6} rounded="md">
         <Formik
           initialValues={{
             title: "",
@@ -87,10 +113,10 @@ const NewPollForm = () => {
               if (!(values.options.some(e => e.description.toLowerCase() === desc.toLowerCase()))) {
                 values.options.push(obj);
               }
-        
+              
             }
             // CREATE POLL
-            // TOAST
+            createPoll(values);
           }}
           validationSchema={PollSchema}
         >

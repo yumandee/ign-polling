@@ -13,7 +13,7 @@ const handler = async(req, res) => {
       try {
         const poll = await Poll.findById(id);
 
-        if (!note){
+        if (!poll){
           return res.status(400).json({ success: false})
         }
 
@@ -29,9 +29,12 @@ const handler = async(req, res) => {
           runValidators: true,
         });
 
-        if (!note) {
+        if (!poll) {
           return res.status(400).json({ success: false });
         }
+
+        res.status(200).json({ success: true, data: poll });
+        
       } catch (error) {
         res.status(400).json({ success: false });
       }
