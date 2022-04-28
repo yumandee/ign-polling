@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'; 
 import { useRouter } from 'next/router';
-import { Box, Flex, Heading, useDisclosure, useToast, Text, Stack, Progress, ProgressLabel, Spacer, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, FormHelperText, ModalFooter, Button, FormErrorMessage, Checkbox } from '@chakra-ui/react';
-
+import { Box, Flex, Heading, Text, Stack, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, FormControl, FormLabel, Input, ModalFooter, Button, FormErrorMessage, Checkbox } from '@chakra-ui/react';
 
 const Poll = ({ poll }) => {
   // console.log(poll.options)
@@ -11,8 +10,9 @@ const Poll = ({ poll }) => {
   const router = useRouter();
   const [password, setPassword] = useState(undefined);
   const [wrongPassword, setWrongPassword] = useState(false);
-  
+  let newVotes = [];
 
+ 
   const handleChange = (e) => {
     setWrongPassword(false);
     setPassword(e.target.value);
@@ -26,23 +26,31 @@ const Poll = ({ poll }) => {
     }
   }
 
-  const handleCheck = (e) => {
-    e.target.checked ? 
-      poll.options[e.target.name].votes += 1
-    : poll.options[e.target.name].votes -= 1;
+  const handleCheck = (e, idx) => {
+    // console.log(e.target.value, 'checked?', idx)
+    e.target.checked
+      ? newVotes.push(idx)
+      : newVotes = newVotes.filter(vote => vote !== idx)
   }
+
   const vote = async () => {
+    // console.log(newVotes)
     const res = await fetch(`http://localhost:3000/api/polls/${router.query.id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(poll),
+      body: JSON.stringify([router.query.id, newVotes]),
+
     });
-    const { data } = await res.json();
+
+    // const { data } = await res.json();
+
+    
     router.push(`/polls/${poll._id}/results`)
   }
+
 
   return (
     <>
@@ -117,7 +125,7 @@ const Poll = ({ poll }) => {
               return (
                 <div key={idx}>
                   <Box borderWidth={1} borderRadius="lg" p={5}>
-                    <Checkbox name={idx} onChange={handleCheck}>
+                    <Checkbox name={idx} onChange={() => handleCheck(event, idx)}>
                       <Text> {option.description} </Text>
                     </Checkbox>
                   </Box>

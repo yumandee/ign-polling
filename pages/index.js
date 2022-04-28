@@ -1,5 +1,8 @@
 import { Box, Flex, Heading, Spacer, Text } from "@chakra-ui/react";
+
 import Link from "next/link";
+
+import React from "react";
 
 const Index = ({ polls }) => {
   return (
@@ -11,7 +14,7 @@ const Index = ({ polls }) => {
             0
           );
           return (
-            <>
+            <React.Fragment key={poll._id}>
               <Box
                 borderWidth={1}
                 borderRadius="lg"
@@ -30,7 +33,7 @@ const Index = ({ polls }) => {
                 <Text fontSize={20}>{poll.description}</Text>
                 <Text color="gray.700">{totalVotes} people have voted. </Text>
               </Box>
-            </>
+            </React.Fragment>
           ); }
         )}
       </Flex>
@@ -42,6 +45,7 @@ Index.getInitialProps = async () => {
   const res = await fetch('http://localhost:3000/api/polls');
   const { data } = await res.json();
 
+  
   return {
     polls: data,
   }
