@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Code Foo 2022 Application
 
-## Getting Started
+**Applicant Name**: Mandy Yu
 
-First, run the development server:
+**Introduction Video**: [placeholder]()
 
-```bash
+## Step 2: Hisui's New Power Plant
+
+### The Prompt 
+Requested By: Professor Laventon
+
+The Galaxy Team has decided that in order to advance the research on Pokemon and the Pokedex, Jubilife village needs a brand new power plant. Luckily, Professor Laventon has discovered that the Pokemon, Voltorb, is the best candidate to help power the village.
+
+Voltorbs can cleanly and efficiently produce electricity. An average Voltorb is about 0.5m (1'08") tall and weighs 10.4 kg (22.8lbs). However, they are uncommon and are only found in the Sacred Plaza.
+
+Objective: How many Voltorbs will you need to catch to fully power the village. Describe each step in your thought process.
+
+### Thought Process
+
+As a avid Pokemon fan, my first thought would be to catch two Voltorbs (or one Voltorb and a Ditto) and simply breed them. But, breeding was not yet introduced in Hisui, so that is not a possibility. 
+
+Before answering this question, there are couple of other questions to ask first.
+- How much electricity do we need to power Jubilife village?
+- How much electricity does a single Voltorb produce?
+
+Thanks to [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Thunderbolt_(move)), it is known that the move Thunderbolt has the alias 100,000 Volts. So, we can assume that a single thunderbolt from a Voltorb can produce 100,000 volts of electricity. The move Thunder is stronger, so it can probably produce more electricity than Thunderbolt. However, the move has only 70% accurracy, whereas Thunderbolt has 100%, making Thunderbolt the more reliable source of electricity. 
+
+After doing some extensive research, it 
+
+## Step 3: Polly
+
+Polly is a real-time polling full-stack web application where users can create and view polls. This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+### Instructions
+To build and run the website locally, 
+```
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Features
+- Home: Users can view all polls that users have created.
+- Create: Users can create a new poll with optional password protection.
+- Results: Users can view the results of a poll in realtime.
+- Poll: Users can vote in a poll.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Challenges
+For this project, I wanted to challenge myself to learn while creating a project, so I decided to use Next.js as my framework. Learning the framework and understanding how it works was a real challenge, but very rewarding. I wanted to include Pusher for real-time updates, but ran into too many issues. In the interest of time, I decided to use an interval and pull the data from MongoDB database every second to mimic the real-time aspect. Some of the things I didn't include as features in this polling application were editing and deleting. There was no authentication factor to the application and thus, editing and deleting was a bad idea to implement without forcing users to create accounts. The goal of the polling application was to allow users to create a simple and quick poll without aditional signup.
