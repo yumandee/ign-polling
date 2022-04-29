@@ -41,7 +41,7 @@ That answer doesn't seem too realistic for one Voltorb to be powering the whole 
 
 ## Step 3: Polly
 
-Polly is a real-time polling full-stack web application where users can create and view polls. This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Polly is a real-time polling full-stack web application where users can create and view polls. This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Components are also styled with [Chakra UI](https://chakra-ui.com/)!
 
 ### Instructions
 To build and run the website locally, type this in the command line:
@@ -50,11 +50,14 @@ npm install
 npm run dev
 ```
 
-### Features
+### Implemented Features
 - Home: Users can view all polls that users have created.
 - Create: Users can create a new poll with optional password protection.
 - Results: Users can view the results of a poll in realtime.
 - Poll: Users can vote in a poll.
 
 ### Challenges
-For this project, I wanted to challenge myself to learn while creating a project, so I decided to use Next.js as my framework. Learning the framework and understanding how it works was a real challenge, but very rewarding. I wanted to include Pusher for real-time updates, but ran into too many issues. In the interest of time, I decided to use an interval and pull the data from MongoDB database every second to mimic the real-time aspect. Some of the things I didn't include as features in this polling application were editing and deleting. There was no authentication factor to the application and thus, editing and deleting was a bad idea to implement without forcing users to create accounts. The goal of the polling application was to allow users to create a simple and quick poll without aditional signup.
+For this project, I wanted to challenge myself to learn while creating a project, so I decided to use Next.js as my framework. Learning the framework and understanding how it works was a real challenge, but very rewarding. I wanted to include Pusher for real-time updates, but ran into too many issues. In the interest of time, I decided to use an interval and pull the data from MongoDB database every second to mimic the real-time aspect. 
+
+Some of the things I didn't include as features in this polling application were editing and deleting. There was no authentication factor to the application and thus, editing and deleting was a bad idea to implement without forcing users to create accounts. My goal for the polling application was to allow users to create a simple and quick poll without aditional signup.
+
