@@ -44,7 +44,7 @@ That answer doesn't seem too realistic for one Voltorb to be powering the whole 
 Polly is a real-time polling full-stack web application where users can create and view polls. This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Instructions
-To build and run the website locally, 
+To build and run the website locally, type this in the command line:
 ```
 npm install
 npm run dev
