@@ -1,4 +1,4 @@
-# Code Foo 2022 Application
+# Code Foo 10 Application
 
 **Applicant Name**: Mandy Yu
 
