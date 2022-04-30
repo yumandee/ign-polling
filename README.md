@@ -2,7 +2,7 @@
 
 **Applicant Name**: Mandy Yu
 
-**Introduction Video**: [placeholder]()
+**Introduction Video**: [Link](https://www.wevideo.com/view/2665829777)
 
 ## Step 2: Hisui's New Power Plant
 
