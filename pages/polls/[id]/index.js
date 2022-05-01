@@ -106,7 +106,7 @@ const Poll = ({ poll }) => {
         tabIndex={-1}
         align="center"
         justify="center"
-        overflow="scroll"
+        // overflow="scroll"
       >
         <Box
           width={400}

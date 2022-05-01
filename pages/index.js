@@ -7,7 +7,7 @@ import React from "react";
 const Index = ({ polls }) => {
   return (
     <>
-      <Flex flexWrap="wrap" align="center" justify="center">
+      <Flex flexWrap="wrap" align="center" justify="center" overflowX="hidden">
         {polls.map((poll) => {
           const totalVotes = poll.options.reduce(
             (prev, curr) => prev + curr.votes,
@@ -19,9 +19,8 @@ const Index = ({ polls }) => {
                 borderWidth={1}
                 borderRadius="lg"
                 p={6}
-                width={300}
-                maxWidth={300}
-                height={200}
+                width={400}
+                height={300}
                 margin={4}
                 key={poll._id}
               >

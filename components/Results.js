@@ -15,7 +15,7 @@ const Results = ({ poll }) => {
 
   return (
     <>
-      <Flex tabIndex={-1} align="center" justify="center" overflow="scroll">
+      <Flex tabIndex={-1} align="center" justify="center">
         <Box
           width={400}
           margin={5}
